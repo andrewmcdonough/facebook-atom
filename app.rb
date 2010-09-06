@@ -8,5 +8,12 @@ get '/' do
   HEADERS = {
     'User-Agent'      => 'Mozilla/5.0 (...) Firefox/3.0.6'
   }
-  open("http://www.facebook.com/feeds/page.php?format=atom10&id=130366206997311", HEADERS).read
+  result =  ""
+  file = open("http://www.facebook.com/feeds/page.php?format=atom10&id=130366206997311", HEADERS)
+  while line = file.gets
+    line.gsub! /<id>/,"<id>http://sahara.tribesports.com/"
+    line.gsub! /\023/,""
+    result += line
+  end
+  result
 end
