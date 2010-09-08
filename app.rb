@@ -24,6 +24,7 @@ get '/pipes-feed' do
   file = open(url)
   while line = file.gets
     line.gsub! /\x96/,""
+    line.gsub! /\302/,""
     result += line
   end
   result
