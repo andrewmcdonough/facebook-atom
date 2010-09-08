@@ -23,8 +23,7 @@ get '/pipes-feed' do
   url = "http://pipes.yahoo.com/pipes/pipe.run?_id=aa0f3e7155c3300661a251efd0fa6072&_render=rss"
   file = open(url)
   while line = file.gets
-    line.gsub! /\x96/,""
-    line.gsub! /\302/,""
+    line.gsub! /[\302\243\x96]/,""
     result += line
   end
   result
